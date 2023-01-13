@@ -3,6 +3,7 @@ package com.example.splash;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.motion.widget.MotionLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.WindowManager;
 
@@ -29,7 +30,8 @@ private MotionLayout mMotionLayout;
 
         @Override
         public void onTransitionCompleted(MotionLayout motionLayout, int currentId) {
-            System.out.println("Completado");
+            //Iniciar Menú
+            openNewActivity();
         }
 
         @Override
@@ -37,5 +39,10 @@ private MotionLayout mMotionLayout;
 
         }
     });
+
+    }
+    public void openNewActivity(){
+        Intent intent = new Intent(this, MenuActivity.class);
+        startActivity(intent);
     }
 }
