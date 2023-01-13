@@ -32,6 +32,7 @@ private MotionLayout mMotionLayout;
         public void onTransitionCompleted(MotionLayout motionLayout, int currentId) {
             //Iniciar Menú
             openNewActivity();
+            finish();
         }
 
         @Override
