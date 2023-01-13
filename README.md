@@ -1,0 +1,2 @@
+# SplashScreenGame
+![gif](app.gif)
