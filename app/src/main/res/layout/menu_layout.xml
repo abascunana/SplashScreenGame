@@ -15,14 +15,20 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+
             <ImageView
                 android:id="@+id/imageView11"
                 android:layout_width="130dp"
                 android:layout_height="130dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="281dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="3dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="278dp"
+                android:layout_marginBottom="598dp"
                 app:srcCompat="@drawable/chalk_face" />
-
 
             <TextView
                 android:id="@+id/textView4"
@@ -30,21 +36,26 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginStart="155dp"
-                android:layout_marginTop="121dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="158dp"
+                android:layout_marginEnd="95dp"
                 android:text="Main Menu"
                 android:textColor="@color/white"
-                android:textSize="20dp"
-                android:textStyle="bold" />
+                android:textSize="40dp"
+                android:textStyle="bold"
+                android:typeface="monospace" />
 
             <ImageView
                 android:id="@+id/imageView12"
                 android:layout_width="130dp"
                 android:layout_height="130dp"
+                android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="-3dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="282dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="600dp"
                 app:srcCompat="@drawable/chalk_face" />
 
             <ListView
@@ -55,10 +66,10 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginStart="122dp"
-                android:layout_marginTop="75dp"
-                android:layout_marginEnd="119dp"
-                android:layout_marginBottom="218dp" />
+                android:layout_marginStart="120dp"
+                android:layout_marginTop="77dp"
+                android:layout_marginEnd="120dp"
+                android:layout_marginBottom="216dp" />
 
 
         </RelativeLayout>

@@ -11,12 +11,12 @@ public class MenuActivity extends AppCompatActivity {
     String[] opciones = {"LightsOut","2048"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        System.out.println(getResources().getString(R.string.menu));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_layout);
         ArrayAdapter adapter = new ArrayAdapter<String>(this,
-                androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, opciones);
+                R.layout.menu_item, R.id.list_menu,opciones);
         ListView listView = (ListView) findViewById(R.id.opciones);
-        listView.setBackgroundColor(Color.WHITE);
         listView.setAdapter(adapter);
     }
 }
