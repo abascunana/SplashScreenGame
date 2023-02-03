@@ -12,6 +12,7 @@ private MotionLayout mMotionLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_splash);
     mMotionLayout = findViewById(R.id.mainlayout);
 

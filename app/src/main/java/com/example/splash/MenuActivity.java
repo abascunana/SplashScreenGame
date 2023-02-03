@@ -12,6 +12,7 @@ public class MenuActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         System.out.println(getResources().getString(R.string.menu));
+        getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_layout);
         ArrayAdapter adapter = new ArrayAdapter<String>(this,
