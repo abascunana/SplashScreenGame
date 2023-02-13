@@ -2,10 +2,14 @@ package com.example.splash;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class MenuActivity extends AppCompatActivity {
     String[] opciones = {"LightsOut","2048"};
@@ -19,5 +23,15 @@ public class MenuActivity extends AppCompatActivity {
                 R.layout.menu_item, R.id.list_menu,opciones);
         ListView listView = (ListView) findViewById(R.id.opciones);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getBaseContext(),opciones[position],Toast.LENGTH_SHORT).show();
+                if (opciones[position].equals("LightsOut")){
+                    Intent intent = new Intent(MenuActivity.this, LightsOut.class);
+                    startActivity(intent);
+                }
+            }
+        });
     }
 }
