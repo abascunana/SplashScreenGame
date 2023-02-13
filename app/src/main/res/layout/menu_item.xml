@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:typeface="monospace"
+        android:id="@+id/list_menu"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:textSize="30dp"
+    android:layout_gravity="center_horizontal"
+    android:layout_height="wrap_content"
+    android:shadowRadius="5"
+    android:gravity="center"
+    android:textColor="@color/menu_color"
+    android:shadowColor="@color/menu_glow"
+    android:shadowDy="3"
+    android:shadowDx="3" />
+</androidx.constraintlayout.widget.ConstraintLayout>
