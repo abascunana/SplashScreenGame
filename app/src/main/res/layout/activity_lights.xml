@@ -5,16 +5,19 @@
     android:id="@+id/constraint"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LightsOut.LightsOut">
+    tools:context=".LightsOut.LightsOut"
+    android:background="@drawable/chalk">
 
     <TextView
+
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/gametitle"
-        android:textColor="#776e65"
+        android:textColor="@color/white"
         android:textSize="50dp"
+        android:fontFamily="@font/chalk"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/gridLayout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -302,7 +305,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="Mostrar Solución"
+        android:text="Rendirse"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.527"

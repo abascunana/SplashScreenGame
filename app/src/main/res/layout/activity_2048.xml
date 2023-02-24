@@ -5,7 +5,8 @@
     android:id="@+id/constraint"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".twofoureight.Initializer">
+    tools:context=".twofoureight.Initializer"
+    android:background="@drawable/chalk">
 
     <TextView
         android:id="@+id/textTextView14"
@@ -14,8 +15,10 @@
         android:layout_marginTop="38dp"
         android:gravity="center"
         android:text="@string/_2048_game"
-        android:textColor="#776e65"
+        android:textColor="@color/white"
         android:textSize="50dp"
+
+        android:fontFamily="@font/chalk"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/gridLayout"
         app:layout_constraintEnd_toEndOf="parent"

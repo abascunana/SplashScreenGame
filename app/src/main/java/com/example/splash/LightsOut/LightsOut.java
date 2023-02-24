@@ -1,9 +1,13 @@
 package com.example.splash.LightsOut;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,16 +15,37 @@ import android.widget.Button;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import com.example.splash.MenuActivity;
 import com.example.splash.R;
+import com.example.splash.db.Dbgames;
+import com.example.splash.twofoureight.Initializer;
 
 import java.util.Random;
 
 public class LightsOut extends AppCompatActivity {
-    private int score;
+    private int movimiento;
     private static final String KEY_INDEX = "index";
+    private boolean win;
     //MATRIZ
     private Switch[][] buttons = new Switch[5][5];
-    private int[][] solucion = new int[buttons.length][buttons[1].length];
+    private int[][] solucion = new int[buttons.length][buttons[0].length];
+
+
+    @Override
+    protected void onDestroy() {
+
+        Dbgames dBcomments= new Dbgames(LightsOut.this);
+        dBcomments.insertaRecordLt( win,movimiento);
+        super.onDestroy();
+    }
+    @Override
+    protected void onPause() {
+
+        Dbgames dBcomments= new Dbgames(LightsOut.this);
+        dBcomments.insertaRecordLt( win,movimiento);
+        super.onPause();
+    }
+
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
@@ -33,7 +58,6 @@ public class LightsOut extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_lights);
         SharedPreferences prefs = this.getSharedPreferences("prefsKey", Context.MODE_PRIVATE);
-        score = prefs.getInt("points", 0);
         buttons[0][0] = (Switch) findViewById(R.id.bulb0);
         buttons[0][1] = (Switch) findViewById(R.id.bulb1);
         buttons[0][2] = (Switch) findViewById(R.id.bulb2);
@@ -78,7 +102,25 @@ public class LightsOut extends AppCompatActivity {
         Button buttonsol = (Button) findViewById(R.id.button2);
         buttonsol.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                randomon();
+                new AlertDialog.Builder(LightsOut.this)
+                        .setTitle("Give Up")
+                        .setMessage("¿Are you sure you want to give up?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                final MediaPlayer mp = MediaPlayer.create(LightsOut.this, R.raw.lose);
+                                mp.start();
+
+                                Intent intent = new Intent(LightsOut.this, MenuActivity.class);
+                                startActivity(intent);
+
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                //Nothing
+                            }
+                        })
+                        .show();
             }
         });
 
@@ -95,7 +137,7 @@ public class LightsOut extends AppCompatActivity {
                 if (random == true) {
                     limite++;
                 }
-                // se podrá retocar el límite para dificultad 1-hardcore,2-difícil,3-media,4-fácil
+                //TODO se podrá retocar el límite para dificultad 1-hardcore,2-difícil,3-media,4-fácil
                 if (limite < (buttons.length * buttons[0].length / 2)) {
                     buttons[i][j].setChecked(random);
                 }
@@ -156,7 +198,9 @@ public class LightsOut extends AppCompatActivity {
     }
 
     public void cuadroAction(int h, int w, Switch[][] buttons) {
+
         buttons[h][w].setOnClickListener(v -> {
+
             if (buttons[h][w].isChecked()) {
                 //establecer límites para que la app deje de crashear
                 surround(w, h);
@@ -180,9 +224,15 @@ public class LightsOut extends AppCompatActivity {
                     changeback(buttons[h][w]);
                 }
             }
+            movimiento++;
             if (win()) {
+                final MediaPlayer mp = MediaPlayer.create(this, R.raw.win);
+                mp.start();
+                win= true;
                 Toast toast = Toast.makeText(this, "Has ganado :DDDDDDDD", Toast.LENGTH_SHORT);
                 toast.show();
+                Intent intent = new Intent(this, MenuActivity.class);
+                startActivity(intent);
 
             }
         });

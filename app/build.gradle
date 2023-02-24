@@ -29,6 +29,13 @@ android {
     buildFeatures {
         viewBinding true
     }
+    sourceSets {
+        main {
+            assets {
+                srcDirs 'src\\main\\assets', 'src\\res\\fonts', 'src\\fonts', 'src\\main\\assets\\2', 'src\\main\\assets\\fonts', 'src\\main\\assets\\font', 'src\\main\\res\\font'
+            }
+        }
+    }
 }
 
 dependencies {

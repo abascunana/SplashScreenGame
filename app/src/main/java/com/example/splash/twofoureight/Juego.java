@@ -1,13 +1,24 @@
 package com.example.splash.twofoureight;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
+import android.content.Context;
+import android.content.Intent;
+import android.widget.Toast;
+
+import com.example.splash.MenuActivity;
+import com.example.splash.SplashActivity;
+
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Juego {
+
     public static final int TAB = 4; //Número de filas/columnas
 
     private static final String TAG = "Juego";//posición del programa
     private int[][] tablero;//el tablero en sí
+    private Initializer mInitializer;
     private Random r;
 
     private class Casilla {
@@ -20,8 +31,9 @@ public class Juego {
         }
     }
 
-    public Juego() { //Juego
+    public Juego(Initializer mInitializer) { //Juego
         r = new Random();
+        this.mInitializer = mInitializer;
         reiniciarTablero();
     }
 
@@ -30,12 +42,15 @@ public class Juego {
         conseguirSiguientePieza();
     }
 
-    public boolean detectarLleno(int i, int j, int[][] casilla) {
-        boolean lleno = false;
-        if (tablero[i][j] != 0) {
-            lleno = true;
+    public void detectarWin() {
+        for (int i = 0; i < tablero[0].length; i++) {
+            for (int j = 0; j < tablero[1].length; j++) {
+                if (tablero[i][j] >= 2048){
+                    declareWin();
+                }
+            }
         }
-        return lleno;
+
 
     }
 
@@ -89,6 +104,7 @@ public class Juego {
                 huboCambio = true;
             }
         }
+        detectarWin();
         conseguirSiguientePieza();
         return huboCambio;
     }
@@ -127,6 +143,7 @@ public class Juego {
 
             }
         }
+        detectarWin();
         conseguirSiguientePieza();
         return huboCambio;
     }
@@ -163,6 +180,7 @@ public class Juego {
                 huboCambio = true;
             }
         }
+        detectarWin();
         conseguirSiguientePieza();
         return huboCambio;
     }
@@ -196,12 +214,19 @@ public class Juego {
 
                 tablero[cuadroVacio][y] = tablero[cuadroOcupado][y];
                 tablero[cuadroOcupado][y] = 0;
+
+
                 huboCambio = true;
             }
         }
+        detectarWin();
         conseguirSiguientePieza();
         return huboCambio;
 
+    }
+
+    private void declareWin(){
+        mInitializer.win();
     }
 
     private Casilla getCasillaVacia() {

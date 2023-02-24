@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LightsOut.LightsOut"
-    tools:ignore="MissingDefaultResource">
+    tools:ignore="MissingDefaultResource"
+    android:background="@drawable/chalk">
 
     <TextView
         android:id="@+id/textView14"
@@ -14,7 +15,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/gametitle"
-        android:textColor="#776e65"
+        android:textColor="@color/white"
         android:textSize="50dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.WindowManager;
 
 public class SplashActivity extends AppCompatActivity {
+
 private MotionLayout mMotionLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

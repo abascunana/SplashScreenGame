@@ -1,14 +1,20 @@
 package com.example.splash.twofoureight;
 
+import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GestureDetectorCompat;
 
+import com.example.splash.LightsOut.LightsOut;
+import com.example.splash.MenuActivity;
 import com.example.splash.R;
+import com.example.splash.db.Dbgames;
 
 public class Initializer extends AppCompatActivity implements GestureDetector.OnGestureListener{
 
@@ -16,6 +22,10 @@ public class Initializer extends AppCompatActivity implements GestureDetector.On
 
     private TextView[][] mTableroVisual;
     private Juego mJuego;
+
+    private boolean win;
+
+    private int movimiento;
     private GestureDetectorCompat mDetector;
     private final int UMBRAL_VELOCIDAD = 300;
 
@@ -24,7 +34,7 @@ public class Initializer extends AppCompatActivity implements GestureDetector.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_2048);
         getSupportActionBar().hide();
-        mJuego = new Juego();
+        mJuego = new Juego(this);
         mTableroVisual = new TextView[Juego.TAB][Juego.TAB];
         mDetector = new GestureDetectorCompat(this, this);
 
@@ -91,6 +101,8 @@ public class Initializer extends AppCompatActivity implements GestureDetector.On
                 mMovimiento = true; ////////////////////////////// BORRAR
             }
         }
+        movimiento++;
+
     }
 
     private void inicializarComponentes() {
@@ -114,7 +126,19 @@ public class Initializer extends AppCompatActivity implements GestureDetector.On
         mTableroVisual[3][2] = findViewById(R.id.cuadro14);
         mTableroVisual[3][3] = findViewById(R.id.cuadro15);
     }
+    @Override
+    protected void onPause() {
 
+        Dbgames dBcomments= new Dbgames(Initializer.this);
+        dBcomments.insertaRecordLt( win,movimiento);
+        super.onPause();
+    }
+    @Override
+    protected void onDestroy() {
+        Dbgames dBcomments= new Dbgames(Initializer.this);
+        dBcomments.insertaRecordTf( win,movimiento);
+        super.onDestroy();
+    }
     private void actualizarTablero() {
         int[][] tablero = mJuego.getTablero();
         for(int i=0; i<Juego.TAB; ++i) {
@@ -128,5 +152,16 @@ public class Initializer extends AppCompatActivity implements GestureDetector.On
                 mTableroVisual[i][j].setText(String.valueOf(valorCasilla));
             }
         }
+    }
+
+
+    public void win(){
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.win);
+        mp.start();
+        win = true;
+        Toast toast = Toast.makeText(this, "Has ganado :DDDDDDDD", Toast.LENGTH_SHORT);
+        toast.show();
+        Intent intent = new Intent(this, MenuActivity.class);
+        startActivity(intent);
     }
 }
