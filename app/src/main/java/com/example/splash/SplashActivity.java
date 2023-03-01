@@ -7,45 +7,50 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.WindowManager;
 
+import com.example.splash.db.DbHelper;
+
 public class SplashActivity extends AppCompatActivity {
 
-private MotionLayout mMotionLayout;
+    private MotionLayout mMotionLayout;
+    DbHelper mDbHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_splash);
-    mMotionLayout = findViewById(R.id.mainlayout);
+        mMotionLayout = findViewById(R.id.mainlayout);
 
-    mMotionLayout.startLayoutAnimation();
+        mMotionLayout.startLayoutAnimation();
 
-    mMotionLayout.setTransitionListener(new MotionLayout.TransitionListener() {
-        @Override
-        public void onTransitionStarted(MotionLayout motionLayout, int startId, int endId) {
+        mMotionLayout.setTransitionListener(new MotionLayout.TransitionListener() {
+            @Override
+            public void onTransitionStarted(MotionLayout motionLayout, int startId, int endId) {
 
-        }
+            }
 
-        @Override
-        public void onTransitionChange(MotionLayout motionLayout, int startId, int endId, float progress) {
+            @Override
+            public void onTransitionChange(MotionLayout motionLayout, int startId, int endId, float progress) {
 
-        }
+            }
 
-        @Override
-        public void onTransitionCompleted(MotionLayout motionLayout, int currentId) {
-            //Iniciar Menú
-            openNewActivity();
-            finish();
-        }
+            @Override
+            public void onTransitionCompleted(MotionLayout motionLayout, int currentId) {
+                //Iniciar Menú
+                openNewActivity();
+                finish();
+            }
 
-        @Override
-        public void onTransitionTrigger(MotionLayout motionLayout, int triggerId, boolean positive, float progress) {
+            @Override
+            public void onTransitionTrigger(MotionLayout motionLayout, int triggerId, boolean positive, float progress) {
 
-        }
-    });
+            }
+        });
 
     }
-    public void openNewActivity(){
-        Intent intent = new Intent(this, MenuActivity.class);
+
+    public void openNewActivity() {
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 }

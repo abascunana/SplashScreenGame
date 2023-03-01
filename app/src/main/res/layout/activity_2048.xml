@@ -5,20 +5,20 @@
     android:id="@+id/constraint"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".twofoureight.Initializer"
-    android:background="@drawable/chalk">
+    android:background="@drawable/chalk"
+    tools:context=".twofoureight.Initializer">
 
     <TextView
         android:id="@+id/textTextView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="38dp"
+        android:fontFamily="@font/chalk"
         android:gravity="center"
         android:text="@string/_2048_game"
         android:textColor="@color/white"
-        android:textSize="50dp"
 
-        android:fontFamily="@font/chalk"
+        android:textSize="80dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/gridLayout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,10 +42,11 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="@drawable/square"
+            android:fontFamily="@font/chalk"
             android:gravity="center"
             android:text=""
             android:textAlignment="center"
-            android:textSize="40dp"
+            android:textSize="60dp"
             app:layout_column="0"
             app:layout_row="0" />
 
@@ -54,10 +55,11 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="@drawable/square"
+            android:fontFamily="@font/chalk"
             android:gravity="center"
             android:text=""
             android:textAlignment="center"
-            android:textSize="40dp"
+            android:textSize="60dp"
             app:layout_column="1"
             app:layout_row="0" />
 
@@ -66,10 +68,11 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="@drawable/square"
+            android:fontFamily="@font/chalk"
             android:gravity="center"
             android:text=""
             android:textAlignment="center"
-            android:textSize="40dp"
+            android:textSize="60dp"
             app:layout_column="2"
             app:layout_row="0" />
 
@@ -78,10 +81,11 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="@drawable/square"
+            android:fontFamily="@font/chalk"
             android:gravity="center"
             android:text=""
             android:textAlignment="center"
-            android:textSize="40dp"
+            android:textSize="60dp"
             app:layout_column="3"
             app:layout_row="0" />
 
@@ -91,10 +95,11 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="@drawable/square"
+            android:fontFamily="@font/chalk"
             android:gravity="center"
             android:text=""
             android:textAlignment="center"
-            android:textSize="40dp"
+            android:textSize="60dp"
             app:layout_column="0"
             app:layout_row="1" />
 
@@ -103,10 +108,11 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="@drawable/square"
+            android:fontFamily="@font/chalk"
             android:gravity="center"
             android:text=""
             android:textAlignment="center"
-            android:textSize="40dp"
+            android:textSize="60dp"
             app:layout_column="1"
             app:layout_row="1" />
 
@@ -115,10 +121,11 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="@drawable/square"
+            android:fontFamily="@font/chalk"
             android:gravity="center"
             android:text=""
             android:textAlignment="center"
-            android:textSize="40dp"
+            android:textSize="60dp"
             app:layout_column="2"
             app:layout_row="1" />
 
@@ -127,10 +134,11 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="@drawable/square"
+            android:fontFamily="@font/chalk"
             android:gravity="center"
             android:text=""
             android:textAlignment="center"
-            android:textSize="40dp"
+            android:textSize="60dp"
             app:layout_column="3"
             app:layout_row="1" />
 
@@ -139,10 +147,11 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="@drawable/square"
+            android:fontFamily="@font/chalk"
             android:gravity="center"
             android:text=""
             android:textAlignment="center"
-            android:textSize="40dp"
+            android:textSize="60dp"
             app:layout_column="0"
             app:layout_row="2" />
 
@@ -151,10 +160,11 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="@drawable/square"
+            android:fontFamily="@font/chalk"
             android:gravity="center"
             android:text=""
             android:textAlignment="center"
-            android:textSize="40dp"
+            android:textSize="60dp"
             app:layout_column="1"
             app:layout_row="2" />
 
@@ -163,10 +173,11 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="@drawable/square"
+            android:fontFamily="@font/chalk"
             android:gravity="center"
             android:text=""
             android:textAlignment="center"
-            android:textSize="40dp"
+            android:textSize="60dp"
             app:layout_column="2"
             app:layout_row="2" />
 
@@ -175,10 +186,11 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="@drawable/square"
+            android:fontFamily="@font/chalk"
             android:gravity="center"
             android:text=""
             android:textAlignment="center"
-            android:textSize="40dp"
+            android:textSize="60dp"
             app:layout_column="3"
             app:layout_row="2" />
 
@@ -187,10 +199,11 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="@drawable/square"
+            android:fontFamily="@font/chalk"
             android:gravity="center"
             android:text=""
             android:textAlignment="center"
-            android:textSize="40dp"
+            android:textSize="60dp"
             app:layout_column="0"
             app:layout_row="3" />
 
@@ -199,10 +212,11 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="@drawable/square"
+            android:fontFamily="@font/chalk"
             android:gravity="center"
             android:text=""
             android:textAlignment="center"
-            android:textSize="40dp"
+            android:textSize="60dp"
             app:layout_column="1"
             app:layout_row="3" />
 
@@ -211,10 +225,11 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="@drawable/square"
+            android:fontFamily="@font/chalk"
             android:gravity="center"
             android:text=""
             android:textAlignment="center"
-            android:textSize="40dp"
+            android:textSize="60dp"
             app:layout_column="2"
             app:layout_row="3" />
 
@@ -223,10 +238,11 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="@drawable/square"
+            android:fontFamily="@font/chalk"
             android:gravity="center"
             android:text=""
             android:textAlignment="center"
-            android:textSize="40dp"
+            android:textSize="60dp"
             app:layout_column="3"
             app:layout_row="3" />
 

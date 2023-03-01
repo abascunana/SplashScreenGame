@@ -11,18 +11,29 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GestureDetectorCompat;
 
-import com.example.splash.LightsOut.LightsOut;
 import com.example.splash.MenuActivity;
 import com.example.splash.R;
-import com.example.splash.db.Dbgames;
+import com.example.splash.db.DbGames;
 
-public class Initializer extends AppCompatActivity implements GestureDetector.OnGestureListener{
+public class Initializer extends AppCompatActivity implements GestureDetector.OnGestureListener {
 
     private static final String TAG = "MainActivity";
 
     private TextView[][] mTableroVisual;
+
+    public static String getUsername() {
+        return username;
+    }
+
+    public static void setUsername(String username) {
+        Initializer.username = username;
+    }
+
+    static String username;
+
     private Juego mJuego;
 
+    //TODO contador de tiempo
     private boolean win;
 
     private int movimiento;
@@ -44,7 +55,7 @@ public class Initializer extends AppCompatActivity implements GestureDetector.On
 
     @Override
     public boolean onTouchEvent(MotionEvent e) {
-        if(mDetector.onTouchEvent(e)) {
+        if (mDetector.onTouchEvent(e)) {
             return true;
         }
         return super.onTouchEvent(e);
@@ -56,7 +67,8 @@ public class Initializer extends AppCompatActivity implements GestureDetector.On
     }
 
     @Override
-    public void onShowPress(MotionEvent motionEvent) { }
+    public void onShowPress(MotionEvent motionEvent) {
+    }
 
     @Override
     public boolean onSingleTapUp(MotionEvent motionEvent) {
@@ -69,7 +81,8 @@ public class Initializer extends AppCompatActivity implements GestureDetector.On
     }
 
     @Override
-    public void onLongPress(MotionEvent motionEvent) { }
+    public void onLongPress(MotionEvent motionEvent) {
+    }
 
     @Override
     public boolean onFling(MotionEvent e1, MotionEvent e2, float vX, float vY) {
@@ -78,27 +91,28 @@ public class Initializer extends AppCompatActivity implements GestureDetector.On
     }
 
     boolean mMovimiento;
+
     private void movimiento(float vX, float vY) {
         boolean hayMovimiento = false;
 
-        if(Math.abs(vX) > Math.abs(vY)) {
-            if(vX > UMBRAL_VELOCIDAD)
+        if (Math.abs(vX) > Math.abs(vY)) {
+            if (vX > UMBRAL_VELOCIDAD)
                 hayMovimiento = mJuego.moverHaciaDerecha();
-            else if(vX < -UMBRAL_VELOCIDAD)
+            else if (vX < -UMBRAL_VELOCIDAD)
                 hayMovimiento = mJuego.moverHaciaIzquierda();
         } else {
-            if(vY > UMBRAL_VELOCIDAD)
+            if (vY > UMBRAL_VELOCIDAD)
                 hayMovimiento = mJuego.moverHaciaAbajo();
-            else if(vY < -UMBRAL_VELOCIDAD)
+            else if (vY < -UMBRAL_VELOCIDAD)
                 hayMovimiento = mJuego.moverHaciaArriba();
         }
 
-        if(!mJuego.estaTableroLleno()) {
-            if(hayMovimiento) {
-                if(!mMovimiento) ///////////////////////////////////// BORRAR
+        if (!mJuego.estaTableroLleno()) {
+            if (hayMovimiento) {
+                if (!mMovimiento)
                     mJuego.conseguirSiguientePieza();
                 actualizarTablero();
-                mMovimiento = true; ////////////////////////////// BORRAR
+                mMovimiento = true;
             }
         }
         movimiento++;
@@ -126,25 +140,27 @@ public class Initializer extends AppCompatActivity implements GestureDetector.On
         mTableroVisual[3][2] = findViewById(R.id.cuadro14);
         mTableroVisual[3][3] = findViewById(R.id.cuadro15);
     }
+
     @Override
     protected void onPause() {
-
-        Dbgames dBcomments= new Dbgames(Initializer.this);
-        dBcomments.insertaRecordLt( win,movimiento);
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.lose);
+        mp.start();
+        DbGames dBcomments = new DbGames(Initializer.this);
+        dBcomments.insertaRecordTf(win, movimiento, username);
         super.onPause();
     }
+
     @Override
     protected void onDestroy() {
-        Dbgames dBcomments= new Dbgames(Initializer.this);
-        dBcomments.insertaRecordTf( win,movimiento);
         super.onDestroy();
     }
+
     private void actualizarTablero() {
         int[][] tablero = mJuego.getTablero();
-        for(int i=0; i<Juego.TAB; ++i) {
-            for(int j=0; j<Juego.TAB; ++j) {
+        for (int i = 0; i < Juego.TAB; ++i) {
+            for (int j = 0; j < Juego.TAB; ++j) {
                 int valorCasilla = tablero[i][j];
-                if(valorCasilla == 0) {
+                if (valorCasilla == 0) {
                     mTableroVisual[i][j].setTextColor(0);
                 } else {
                     mTableroVisual[i][j].setTextColor(0xFF000000);
@@ -155,7 +171,7 @@ public class Initializer extends AppCompatActivity implements GestureDetector.On
     }
 
 
-    public void win(){
+    public void win() {
         final MediaPlayer mp = MediaPlayer.create(this, R.raw.win);
         mp.start();
         win = true;

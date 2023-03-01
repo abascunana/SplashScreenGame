@@ -45,8 +45,8 @@ public class Juego {
     public void detectarWin() {
         for (int i = 0; i < tablero[0].length; i++) {
             for (int j = 0; j < tablero[1].length; j++) {
-                if (tablero[i][j] >= 2048){
-                    declareWin();
+                if (tablero[i][j] >= 2048) {
+                    mInitializer.win();
                 }
             }
         }
@@ -65,7 +65,7 @@ public class Juego {
     public void conseguirSiguientePieza() {
         //SELECCIONA CASILLA VACÍA RANDOM (FILA/COLUMNA) Y LE ASIGNA EL NÚMERO 2
         Casilla c = getCasillaVacia();
-        if (tablero[c.x][c.y] == 0){
+        if (tablero[c.x][c.y] == 0) {
             tablero[c.x][c.y] = 2;
         }
 
@@ -81,7 +81,7 @@ public class Juego {
                 for (cuadroVacio = TAB - 1; cuadroVacio >= 0; cuadroVacio--)
                     if (tablero[x][cuadroVacio] == 0)
                         break;
-                    else if ((cuadroVacio - 1) >0){
+                    else if ((cuadroVacio - 1) > 0) {
                         if (tablero[x][cuadroVacio] == tablero[x][cuadroVacio - 1]) {
                             //Suma
                             tablero[x][cuadroVacio] = (tablero[x][cuadroVacio - 1] * 2);
@@ -119,7 +119,7 @@ public class Juego {
                 for (cuadroVacio = 0; cuadroVacio < TAB; cuadroVacio++)
                     if (tablero[x][cuadroVacio] == 0) {
                         break;
-                    } else if ((cuadroVacio + 1) <TAB){
+                    } else if ((cuadroVacio + 1) < TAB) {
                         if (tablero[x][cuadroVacio] == tablero[x][cuadroVacio + 1]) {
                             tablero[x][cuadroVacio] = (tablero[x][cuadroVacio + 1] * 2);
                             //Suma
@@ -157,7 +157,7 @@ public class Juego {
                 for (cuadroVacio = TAB - 1; cuadroVacio >= 0; cuadroVacio--)
                     if (tablero[cuadroVacio][y] == 0) {
                         break;
-                    }else if ((cuadroVacio - 1) >0){
+                    } else if ((cuadroVacio - 1) > 0) {
                         if (tablero[cuadroVacio][y] == tablero[cuadroVacio - 1][y]) {
                             tablero[cuadroVacio][y] = (tablero[cuadroVacio - 1][y] * 2);
                             tablero[cuadroVacio - 1][y] = 0;
@@ -195,7 +195,7 @@ public class Juego {
                 for (cuadroVacio = 0; cuadroVacio < TAB; cuadroVacio++)
                     if (tablero[cuadroVacio][y] == 0)
                         break;
-                else if ((cuadroVacio + 1) <TAB){
+                    else if ((cuadroVacio + 1) < TAB) {
                         if (tablero[cuadroVacio][y] == tablero[cuadroVacio + 1][y]) {
                             tablero[cuadroVacio][y] = (tablero[cuadroVacio + 1][y] * 2);
                             tablero[cuadroVacio + 1][y] = 0;
@@ -225,9 +225,6 @@ public class Juego {
 
     }
 
-    private void declareWin(){
-        mInitializer.win();
-    }
 
     private Casilla getCasillaVacia() {
         //arraylists de casillas disponibles

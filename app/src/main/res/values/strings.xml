@@ -19,4 +19,6 @@
     <string name="stats">Stats</string>
     <string name="title">NerdGames</string>
     <string name="next_tutorial">Next Tutorial</string>
+    <string name="userprompt">Enter your Username</string>
+    <string name="your_username_goes_here">Your Username Goes Here</string>
 </resources>

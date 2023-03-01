@@ -1,34 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layoutDescription="@xml/activity_splash_scene"
-    android:id="@+id/mainlayout"
-    tools:context=".SplashActivity"
+    tools:context="com.example.splash.MenuActivity"
     android:background="@drawable/chalk">
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/title"
-        android:textColor="@color/white"
-        android:textSize="100dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        android:fontFamily="@font/chalk"/>
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="162dp"
-        android:layout_height="153dp"
-        android:src="@drawable/logo"
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="52dp"
+        android:fontFamily="@font/chalk"
+        android:text="@string/userprompt"
+        android:textColor="@color/white"
+        android:textSize="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.431"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/userspp"
+        android:layout_width="357dp"
+        android:layout_height="69dp"
+        app:layout_constraintBottom_toTopOf="@+id/sendUsername"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/writeUser"
+        app:layout_constraintVertical_bias="0.22">
+
+    </Spinner>
+
+    <EditText
+        android:id="@+id/writeUser"
+        android:layout_width="412dp"
+        android:layout_height="89dp"
+        android:layout_below="@+id/textView4"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="100dp"
+        android:fontFamily="@font/chalk"
+        android:gravity="top"
+        android:hint="@string/your_username_goes_here"
+        android:textColor="@color/white"
+        android:textColorHint="#FF0000"
+        android:textSize="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.316"></ImageView>
-</androidx.constraintlayout.motion.widget.MotionLayout>
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.057" />
+
+    <Button
+        android:id="@+id/sendUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="80dp"
+        android:text="Send"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_text"
+        app:layout_constraintVertical_bias="0.257" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

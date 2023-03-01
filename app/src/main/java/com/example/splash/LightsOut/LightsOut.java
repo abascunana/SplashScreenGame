@@ -1,5 +1,6 @@
 package com.example.splash.LightsOut;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,32 +18,44 @@ import android.widget.Toast;
 
 import com.example.splash.MenuActivity;
 import com.example.splash.R;
-import com.example.splash.db.Dbgames;
-import com.example.splash.twofoureight.Initializer;
+import com.example.splash.db.DbGames;
+import com.google.android.material.slider.Slider;
 
 import java.util.Random;
 
 public class LightsOut extends AppCompatActivity {
+    private Slider mSlider;
+    private int difficulty = 2;
     private int movimiento;
     private static final String KEY_INDEX = "index";
+
+    public static String getUsername() {
+        return username;
+    }
+
+    public static void setUsername(String username) {
+        LightsOut.username = username;
+    }
+
+    static String username;
+
     private boolean win;
     //MATRIZ
     private Switch[][] buttons = new Switch[5][5];
-    private int[][] solucion = new int[buttons.length][buttons[0].length];
-
+//TODO contador de tiempo
 
     @Override
     protected void onDestroy() {
-
-        Dbgames dBcomments= new Dbgames(LightsOut.this);
-        dBcomments.insertaRecordLt( win,movimiento);
         super.onDestroy();
     }
+
     @Override
     protected void onPause() {
+        final MediaPlayer mp = MediaPlayer.create(LightsOut.this, R.raw.lose);
+        mp.start();
 
-        Dbgames dBcomments= new Dbgames(LightsOut.this);
-        dBcomments.insertaRecordLt( win,movimiento);
+        DbGames dBcomments = new DbGames(LightsOut.this);
+        dBcomments.insertaRecordLt(win, movimiento, username);
         super.onPause();
     }
 
@@ -57,6 +70,7 @@ public class LightsOut extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_lights);
+        mSlider = (Slider) findViewById(R.id.difficulty);
         SharedPreferences prefs = this.getSharedPreferences("prefsKey", Context.MODE_PRIVATE);
         buttons[0][0] = (Switch) findViewById(R.id.bulb0);
         buttons[0][1] = (Switch) findViewById(R.id.bulb1);
@@ -92,6 +106,17 @@ public class LightsOut extends AppCompatActivity {
             }
 
         }
+        mSlider.addOnSliderTouchListener(new Slider.OnSliderTouchListener() {
+            @Override
+            public void onStartTrackingTouch(@NonNull Slider slider) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(@NonNull Slider slider) {
+                difficulty = (int) mSlider.getValue();
+            }
+        });
         Button button = (Button) findViewById(R.id.randobutton);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -107,8 +132,6 @@ public class LightsOut extends AppCompatActivity {
                         .setMessage("¿Are you sure you want to give up?")
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                final MediaPlayer mp = MediaPlayer.create(LightsOut.this, R.raw.lose);
-                                mp.start();
 
                                 Intent intent = new Intent(LightsOut.this, MenuActivity.class);
                                 startActivity(intent);
@@ -138,7 +161,7 @@ public class LightsOut extends AppCompatActivity {
                     limite++;
                 }
                 //TODO se podrá retocar el límite para dificultad 1-hardcore,2-difícil,3-media,4-fácil
-                if (limite < (buttons.length * buttons[0].length / 2)) {
+                if (limite < (buttons.length * buttons[0].length / difficulty)) {
                     buttons[i][j].setChecked(random);
                 }
                 changeback(buttons[i][j]);
@@ -174,6 +197,7 @@ public class LightsOut extends AppCompatActivity {
         }
         return win;
     }
+
     public void changeback(Switch s) {
         if (s.isChecked()) {
             s.setBackgroundResource(R.drawable.squareon);
@@ -228,7 +252,7 @@ public class LightsOut extends AppCompatActivity {
             if (win()) {
                 final MediaPlayer mp = MediaPlayer.create(this, R.raw.win);
                 mp.start();
-                win= true;
+                win = true;
                 Toast toast = Toast.makeText(this, "Has ganado :DDDDDDDD", Toast.LENGTH_SHORT);
                 toast.show();
                 Intent intent = new Intent(this, MenuActivity.class);
