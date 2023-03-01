@@ -143,8 +143,10 @@ public class Initializer extends AppCompatActivity implements GestureDetector.On
 
     @Override
     protected void onPause() {
-        final MediaPlayer mp = MediaPlayer.create(this, R.raw.lose);
-        mp.start();
+        if (!win){
+            final MediaPlayer mp = MediaPlayer.create(this, R.raw.lose);
+            mp.start();
+        }
         DbGames dBcomments = new DbGames(Initializer.this);
         dBcomments.insertaRecordTf(win, movimiento, username);
         super.onPause();

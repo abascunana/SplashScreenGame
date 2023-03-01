@@ -51,8 +51,11 @@ public class LightsOut extends AppCompatActivity {
 
     @Override
     protected void onPause() {
-        final MediaPlayer mp = MediaPlayer.create(LightsOut.this, R.raw.lose);
-        mp.start();
+        if (!win){
+            final MediaPlayer mp = MediaPlayer.create(LightsOut.this, R.raw.lose);
+            mp.start();
+        }
+
 
         DbGames dBcomments = new DbGames(LightsOut.this);
         dBcomments.insertaRecordLt(win, movimiento, username);
