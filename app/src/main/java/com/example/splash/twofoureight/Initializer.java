@@ -1,16 +1,21 @@
 package com.example.splash.twofoureight;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GestureDetectorCompat;
 
+import com.example.splash.LightsOut.LightsOut;
 import com.example.splash.MenuActivity;
 import com.example.splash.R;
 import com.example.splash.db.DbGames;
@@ -48,6 +53,7 @@ public class Initializer extends AppCompatActivity implements GestureDetector.On
         mJuego = new Juego(this);
         mTableroVisual = new TextView[Juego.TAB][Juego.TAB];
         mDetector = new GestureDetectorCompat(this, this);
+
 
         inicializarComponentes();
         actualizarTablero();
@@ -139,6 +145,28 @@ public class Initializer extends AppCompatActivity implements GestureDetector.On
         mTableroVisual[3][1] = findViewById(R.id.cuadro13);
         mTableroVisual[3][2] = findViewById(R.id.cuadro14);
         mTableroVisual[3][3] = findViewById(R.id.cuadro15);
+        Button buttonsol = (Button) findViewById(R.id.button2);
+        buttonsol.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                new AlertDialog.Builder(Initializer.this)
+                        .setTitle("Give Up")
+                        .setMessage("¿Are you sure you want to give up?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                Intent intent = new Intent(Initializer.this, MenuActivity.class);
+                                startActivity(intent);
+
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                //Nothing
+                            }
+                        })
+                        .show();
+            }
+        });
     }
 
     @Override

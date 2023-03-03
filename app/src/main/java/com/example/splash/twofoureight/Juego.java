@@ -65,7 +65,7 @@ public class Juego {
     public void conseguirSiguientePieza() {
         //SELECCIONA CASILLA VACÍA RANDOM (FILA/COLUMNA) Y LE ASIGNA EL NÚMERO 2
         Casilla c = getCasillaVacia();
-        if (tablero[c.x][c.y] == 0) {
+        if (tablero[c.x][c.y] == 0 && c != null) {
             tablero[c.x][c.y] = 2;
         }
 
